@@ -12,8 +12,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_id_boxeador = trim($_POST["id_boxeador"]);
     if(empty($input_id_boxeador)){
         $id_boxeador_err = "Please enter a name.";
-    } elseif(!filter_var($input_id_boxeador, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $id_boxeador_err = "Please enter a valid name.";
+    } elseif(!filter_var($input_id_boxeador, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]+$/")))){
+        $id_boxeador_err = "Por favor, ingresa un id de boxeador valido.";
     } else{
         $id_boxeador = $input_id_boxeador;
     }
@@ -22,8 +22,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_id_gimnasio = trim($_POST["id_gimnasio"]);
     if(empty($input_id_gimnasio)){
         $id_gimnasio_err = "Ingresa el id de gimnasio.";
-    } elseif(!filter_var($input_id_gimnasio, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $id_gimnasio_err = "Please enter a valid name.";
+    } elseif(!filter_var($input_id_gimnasio, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]+$/")))){
+        $id_gimnasio_err = "Por favor, ingresa un id de gimnacio valido.";
     } else{
         $id_gimnasio = $input_id_gimnasio;
     }
@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_nombre_boxeador = trim($_POST["nombre_boxeador"]);
     if(empty($input_nombre_boxeador)){
         $nombre_boxeador_err = "Ingresa el nombre del boxeador.";
-    } elseif(!filter_var($input_nombre_boxeador, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+    } elseif(!filter_var($input_nombre_boxeador, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]+$/")))){
         $nombre_boxeador_err = "Por favor, introduzca un nombre valido";
     } else{
         $nombre_boxeador = $input_nombre_boxeador;
@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_foto_boxeador = trim($_POST["foto_boxeador"]);
     if(empty($input_foto_boxeador)){
         $foto_boxeador_err = "Ingresa la imagen del boxeador";
-    } elseif(!filter_var($input_foto_boxeador, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+    } elseif(!filter_var($input_foto_boxeador, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"([^\s]+(\.(?i)(jpg|png))$)")))){
         $foto_boxeador_err = "Por favor, la imagen debe de coincidir con un formato valido de imagen.";
     } else{
         $foto_boxeador = $input_foto_boxeador;
@@ -125,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="page-header">
                         <h2>Crear resultado</h2>
                     </div>
-                    <p>Please fill this form and submit to add employee record to the database.</p>
+                    <p>Agrega la información.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group <?php echo (!empty($id_boxeador_err)) ? 'has-error' : ''; ?>">
                             <label>Id boxeador</label>
@@ -161,12 +161,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                         <div class="form-group <?php echo (!empty($foto_boxeador_err)) ? 'has-error' : ''; ?>">
                             <label>Foto boxeador</label>
-                            <input type="text" name="foto_boxeador" class="form-control" value="<?php echo $foto_boxeador; ?>">
+                            <input type="file" name="foto_boxeador" class="form-control" accept="image/*" value="<?php echo $foto_boxeador; ?>">
                             <span class="help-block"><?php echo $foto_boxeador_err;?></span>
                         </div>
 
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="../index.php" class="btn btn-default">Cancel</a>
+                        <input type="submit" class="btn btn-primary" value="Agregar">
+                        <a href="../index.php" class="btn btn-default">Cancelar</a>
                     </form>
                 </div>
             </div>        
